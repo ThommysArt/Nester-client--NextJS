@@ -1,0 +1,1 @@
+const LOGO = "/Nester1.svg"
