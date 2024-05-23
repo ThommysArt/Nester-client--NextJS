@@ -30,7 +30,7 @@ const NavBar: React.FC<NavBarProps> = async ({mode}) => {
                     </div>
                 </div>
                 <div className="flex flex-row gap-2 lg:gap-5">
-                    {mode==="search"|"host"?(<></>):(<SearchTrigger />)}
+                    {mode==="search"||"host"?(<></>):(<SearchTrigger />)}
                     <ModeToggle />
                 </div> 
             </div>

@@ -22,8 +22,8 @@ interface DateRangePickerProps {
 
 const DateRangePicker: React.FC<DateRangePickerProps> = ({className, onDateChange}) => {
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: new Date(2024, 5, 20),
+    to: addDays(new Date(2024, 6, 20), 20),
   })
   const isDesktop = useMediaQuery("(min-width: 768px)")
 

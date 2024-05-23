@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { NavBar } from "@/components/nav-bar";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 export const metadata: Metadata = {
     title: "Nester | Host",
@@ -11,6 +13,13 @@ export default function HostLayout({
   children: React.ReactNode;
   }>) {
   return (
-      <>{children}</>
+    <div className="flex flex-col gap-8">
+    <div>
+      <NavBar mode="host"/>
+    </div>
+    <div className="my-20 px-4 lg:px-20">
+      <EdgeStoreProvider>{children}</EdgeStoreProvider>
+    </div>
+  </div>
   );
 }
