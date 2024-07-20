@@ -1,17 +1,20 @@
 import { toast } from "@/components/ui/use-toast"
 import { API_URL } from "@/constants/api_urls";
 
-const createUser = async (): Promise<User | null> => {
+const createHost = async (authCode: string): Promise<Host | null> => {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${API_URL}/hosts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify({
+                authCode: authCode,
+            })
         })
         toast({
             title: "Success",
-            description: "User created successfully.",
+            description: "Host created successfully.",
         })
         return response.json()
     } catch (error) {
@@ -25,14 +28,14 @@ const createUser = async (): Promise<User | null> => {
     }
 }
 
-const getUser = async (userId: string): Promise<User | null> => {
+const getHost = async (id: number): Promise<Host | null> => {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${API_URL}/hosts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userId}),
+            body: JSON.stringify({id: id})
         })
         return response.json()
     } catch (error) {
@@ -46,9 +49,9 @@ const getUser = async (userId: string): Promise<User | null> => {
     }
 }
 
-const getAllUsers = async (): Promise<User[] | null> => {
+const getAllHost = async (): Promise<Host | null> => {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${API_URL}/hosts/all`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,18 +69,18 @@ const getAllUsers = async (): Promise<User[] | null> => {
     }
 }
 
-const updateUser = async (user: User): Promise<User | null> => {
+const updateHost = async (host: Host): Promise<User | null> => {
     try {
-        const response = await fetch(`${API_URL}/users/`, {
+        const response = await fetch(`${API_URL}/hosts`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(host)
         })
         toast({
             title: "Success",
-            description: "User updated successfully.",
+            description: "Host updated successfully.",
         })
         return response.json()
     } catch (error) {
@@ -91,19 +94,20 @@ const updateUser = async (user: User): Promise<User | null> => {
     }
 }
 
-const deleteUser = async (id: number): Promise<void> => {
+const deleteHost = async (id: number): Promise<User | null> => {
     try {
-        const deletedUser = await fetch(API_URL + `/users/`, {
-            method: 'PUT',
+        const response = await fetch(`${API_URL}/hosts`, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({id}),
+            body: JSON.stringify(id)
         })
         toast({
             title: "Success",
-            description: "User deleted successfully.",
+            description: "Host deleted successfully.",
         })
+        return response.json()
     } catch (error) {
         console.log(error)
         toast({
@@ -111,7 +115,8 @@ const deleteUser = async (id: number): Promise<void> => {
             description: "Sorry, error occured with your request.",
             variant: "destructive"
         })
+        return null
     }
 }
 
-export { createUser, getUser, getAllUsers, updateUser, deleteUser };
+export { createHost, getHost, getAllHost, updateHost, deleteHost };

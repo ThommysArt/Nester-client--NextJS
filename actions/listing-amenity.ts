@@ -1,14 +1,14 @@
 import { toast } from '@/components/ui/use-toast'
 import { API_URL } from '@/constants/api_urls'
 
-const getAllListings = async (hostId: number): Promise<Listing[] | null> => {
+const getAllListingAmenities = async (listingId: number): Promise<Listing[] | null> => {
     try {
-        const response = await fetch(`${API_URL}/listings`, {
+        const response = await fetch(`${API_URL}/amenities`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({hostId})
+            body: JSON.stringify({listingId})
         });
         const data = await response.json();
         return data;
@@ -23,9 +23,9 @@ const getAllListings = async (hostId: number): Promise<Listing[] | null> => {
     }
 }
 
-const getListing = async (id: number): Promise<Listing|null> => {
+const getListingAmenity = async (id: number): Promise<Listing|null> => {
     try {
-        const response = await fetch(`${API_URL}/listings/`, {
+        const response = await fetch(`${API_URL}/amenities/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,19 +45,19 @@ const getListing = async (id: number): Promise<Listing|null> => {
     }
 }
 
-const createListing = async (listing: Listing): Promise<Listing|null> => {
+const createListingAmenity = async (amenity: ListingAmenity): Promise<Listing|null> => {
     try {
         const response = await fetch(`${API_URL}/listings`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(listing)
+            body: JSON.stringify(amenity)
         });
         const data = await response.json();
         toast({
             title: "Success",
-            description: "Listing created successfully.",
+            description: "Listing Amenity created successfully.",
         });
         return data;
     } catch (error) {
@@ -71,19 +71,19 @@ const createListing = async (listing: Listing): Promise<Listing|null> => {
     }
 }
 
-const updateListing = async (listing: Listing): Promise<Listing|null> => {
+const updateListingAmenity = async (amenity: ListingAmenity): Promise<Listing|null> => {
     try {
         const response = await fetch(`${API_URL}/listings/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(listing)
+            body: JSON.stringify(amenity)
         });
         const data = await response.json();
         toast({
             title: "Success",
-            description: "Listing updated successfully.",
+            description: "Listing Amenity updated successfully.",
         });
         return data;
     } catch (error) {
@@ -97,7 +97,7 @@ const updateListing = async (listing: Listing): Promise<Listing|null> => {
     }
 }
 
-const deleteListing = async (id: number): Promise<void> => {
+const deleteListingAmenity = async (id: number): Promise<void> => {
     try {
         await fetch(`${API_URL}/listings/`, {
             method: 'DELETE',
@@ -108,7 +108,7 @@ const deleteListing = async (id: number): Promise<void> => {
         });
         toast({
             title: "Success",
-            description: "Listing deleted successfully.",
+            description: "Listing Amenity deleted successfully.",
         });
     } catch (error) {
         console.log(error);
@@ -120,4 +120,4 @@ const deleteListing = async (id: number): Promise<void> => {
     }
 }
 
-export {getAllListings, getListing, createListing, deleteListing, updateListing};
+export { getAllListingAmenities, getListingAmenity, createListingAmenity, deleteListingAmenity, updateListingAmenity };

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider";
+import { ClerkProvider } from "@clerk/nextjs" 
  
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -20,29 +21,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-      </head>
-      <body className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link
+            rel="icon"
+            href="/icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+        </head>
+        <body className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+            )}
           >
-            {children}
-          </ThemeProvider>
-      </body>
-    </html>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              
+              {children}
+            </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

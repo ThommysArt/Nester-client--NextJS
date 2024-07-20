@@ -14,8 +14,11 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import RedirectCreate from "@/app/host/_components/redirect-create";
+import { getAllListings } from "@/actions/listings";
+import { useAuth } from "@clerk/nextjs";
 
 export default function Page() {
+
   return (
     <>
       <Tabs defaultValue="dashboard">

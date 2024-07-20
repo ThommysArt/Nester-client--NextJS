@@ -1,4 +1,5 @@
 type Listing = {
+    id?: number,
     title: string,
     date: Date,
     description: string,
@@ -8,31 +9,31 @@ type Listing = {
 }
 
 type User = {
-    id: number,
+    id?: number,
     authCode: string,
     createdAt: Date,
 }
 
 type Host = {
-    id: number,
+    id?: number,
     userId: number,
 }
 
 type ListingAmenity = {
-    id: number,
+    id?: number,
     name: string,
     description: string,
     listingId: number
 }
 
 type ListingImage = {
-    id: number,
+    id?: number,
     url: string,
     listingId: number
 }
 
 type ListingReview = {
-    id: number,
+    id?: number,
     listingId: number,
     userId: number,
     rating: number,
@@ -40,7 +41,7 @@ type ListingReview = {
 }
 
 type Payment = {
-    id: number,
+    id?: number,
     listingId: number,
     userId: number,
     amount?: number,
@@ -49,7 +50,7 @@ type Payment = {
 }
 
 type Booking = {
-    id: number,
+    id?: number,
     listingId: number,
     paymnetId: number,
     chechInDate: Date,

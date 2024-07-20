@@ -3,8 +3,9 @@ import Image from 'next/image'
 import { ModeToggle } from '@/components/theme-button'
 
 import { Separator } from '@/components/ui/separator'
-import { AspectRatio } from './ui/aspect-ratio'
-import { SearchTrigger } from './search-trigger'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { SearchTrigger } from '@/components/search-trigger'
+import { BackButton } from '@/components/back-button'
 
 
 
@@ -30,6 +31,7 @@ const NavBar: React.FC<NavBarProps> = async ({mode}) => {
                     </div>
                 </div>
                 <div className="flex flex-row gap-2 lg:gap-5">
+                    <BackButton />
                     {mode==="search"||"host"?(<></>):(<SearchTrigger />)}
                     <ModeToggle />
                 </div> 

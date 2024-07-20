@@ -1,17 +1,18 @@
 import { toast } from "@/components/ui/use-toast"
 import { API_URL } from "@/constants/api_urls";
 
-const createUser = async (): Promise<User | null> => {
+const createListingImage = async (listing_image: ListingImage): Promise<ListingImage | null> => {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(API_URL + "/images", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-        })
+            body: JSON.stringify(listing_image),
+        });
         toast({
             title: "Success",
-            description: "User created successfully.",
+            description: "Added listing image successfully"
         })
         return response.json()
     } catch (error) {
@@ -25,15 +26,15 @@ const createUser = async (): Promise<User | null> => {
     }
 }
 
-const getUser = async (userId: string): Promise<User | null> => {
+const getListingImages = async (listingId: number): Promise<ListingImage[] | null> => {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${API_URL}/images/all`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userId}),
-        })
+            body: JSON.stringify({listingId})
+        });
         return response.json()
     } catch (error) {
         console.log(error)
@@ -46,14 +47,15 @@ const getUser = async (userId: string): Promise<User | null> => {
     }
 }
 
-const getAllUsers = async (): Promise<User[] | null> => {
+const getListingImage = async (id: number): Promise<ListingImage | null> => {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${API_URL}/images`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-        })
+            body: JSON.stringify(id)
+        });
         return response.json()
     } catch (error) {
         console.log(error)
@@ -66,19 +68,15 @@ const getAllUsers = async (): Promise<User[] | null> => {
     }
 }
 
-const updateUser = async (user: User): Promise<User | null> => {
+const updateListingImage = async (id: number): Promise<ListingImage | null> => {
     try {
-        const response = await fetch(`${API_URL}/users/`, {
+        const response = await fetch(`${API_URL}/images`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user),
-        })
-        toast({
-            title: "Success",
-            description: "User updated successfully.",
-        })
+            body: JSON.stringify({id})
+        });
         return response.json()
     } catch (error) {
         console.log(error)
@@ -91,19 +89,16 @@ const updateUser = async (user: User): Promise<User | null> => {
     }
 }
 
-const deleteUser = async (id: number): Promise<void> => {
+const deleteListingImage = async (id: number): Promise<ListingImage | null> => {
     try {
-        const deletedUser = await fetch(API_URL + `/users/`, {
-            method: 'PUT',
+        const response = await fetch(`${API_URL}/images`, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({id}),
-        })
-        toast({
-            title: "Success",
-            description: "User deleted successfully.",
-        })
+            body: JSON.stringify({id})
+        });
+        return response.json()
     } catch (error) {
         console.log(error)
         toast({
@@ -111,7 +106,8 @@ const deleteUser = async (id: number): Promise<void> => {
             description: "Sorry, error occured with your request.",
             variant: "destructive"
         })
+        return null
     }
 }
 
-export { createUser, getUser, getAllUsers, updateUser, deleteUser };
+export { createListingImage, getListingImage, getListingImages, updateListingImage, deleteListingImage };

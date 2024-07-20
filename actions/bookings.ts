@@ -1,14 +1,14 @@
 import { toast } from '@/components/ui/use-toast'
 import { API_URL } from '@/constants/api_urls'
 
-const getAllListings = async (hostId: number): Promise<Listing[] | null> => {
+
+const getAllBookings = async (): Promise<Booking[] | null> => {
     try {
-        const response = await fetch(`${API_URL}/listings`, {
+        const response = await fetch(`${API_URL}/bookings/all`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({hostId})
         });
         const data = await response.json();
         return data;
@@ -23,9 +23,9 @@ const getAllListings = async (hostId: number): Promise<Listing[] | null> => {
     }
 }
 
-const getListing = async (id: number): Promise<Listing|null> => {
+const getBooking = async (id: number): Promise<Booking|null> => {
     try {
-        const response = await fetch(`${API_URL}/listings/`, {
+        const response = await fetch(`${API_URL}/bookings/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,19 +45,19 @@ const getListing = async (id: number): Promise<Listing|null> => {
     }
 }
 
-const createListing = async (listing: Listing): Promise<Listing|null> => {
+const createBooking = async (Booking: Booking): Promise<Booking|null> => {
     try {
-        const response = await fetch(`${API_URL}/listings`, {
+        const response = await fetch(`${API_URL}/bookings`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(listing)
+            body: JSON.stringify(Booking)
         });
         const data = await response.json();
         toast({
             title: "Success",
-            description: "Listing created successfully.",
+            description: "Booking created successfully.",
         });
         return data;
     } catch (error) {
@@ -71,19 +71,19 @@ const createListing = async (listing: Listing): Promise<Listing|null> => {
     }
 }
 
-const updateListing = async (listing: Listing): Promise<Listing|null> => {
+const updateBooking = async (Booking: Booking): Promise<Booking|null> => {
     try {
-        const response = await fetch(`${API_URL}/listings/`, {
+        const response = await fetch(`${API_URL}/bookings/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(listing)
+            body: JSON.stringify(Booking)
         });
         const data = await response.json();
         toast({
             title: "Success",
-            description: "Listing updated successfully.",
+            description: "Booking updated successfully.",
         });
         return data;
     } catch (error) {
@@ -97,9 +97,9 @@ const updateListing = async (listing: Listing): Promise<Listing|null> => {
     }
 }
 
-const deleteListing = async (id: number): Promise<void> => {
+const deleteBooking = async (id: number): Promise<void> => {
     try {
-        await fetch(`${API_URL}/listings/`, {
+        await fetch(`${API_URL}/bookings/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ const deleteListing = async (id: number): Promise<void> => {
         });
         toast({
             title: "Success",
-            description: "Listing deleted successfully.",
+            description: "Booking deleted successfully.",
         });
     } catch (error) {
         console.log(error);
@@ -120,4 +120,4 @@ const deleteListing = async (id: number): Promise<void> => {
     }
 }
 
-export {getAllListings, getListing, createListing, deleteListing, updateListing};
+export { getAllBookings, getBooking, createBooking, deleteBooking, updateBooking };
