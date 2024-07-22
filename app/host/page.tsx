@@ -13,9 +13,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import RedirectCreate from "@/app/host/_components/redirect-create";
+import Link from "next/link";
 import { getAllListings } from "@/actions/listings";
-import { useAuth } from "@clerk/nextjs";
 
 export default function Page() {
 
@@ -51,7 +50,7 @@ export default function Page() {
               
             </CardContent>
             <CardFooter className="flex justify-end gap-2">
-              <RedirectCreate />
+              <Button><Link href="/host/create">Create</Link></Button>
             </CardFooter>
           </Card>
         </TabsContent>

@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider";
-import { ClerkProvider } from "@clerk/nextjs" 
+import { Session } from "next-auth";
  
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -21,7 +21,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
       <html lang="en">
         <head>
           <link
@@ -47,6 +46,5 @@ export default function RootLayout({
             </ThemeProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

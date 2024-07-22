@@ -10,7 +10,7 @@ import { BackButton } from '@/components/back-button'
 
 
 interface NavBarProps {
-    mode: "default" | "host" | "home" | "search"
+    mode: "default" | "host" | "home" | "search" | "auth"
 }
   
 const NavBar: React.FC<NavBarProps> = async ({mode}) => {
@@ -31,8 +31,8 @@ const NavBar: React.FC<NavBarProps> = async ({mode}) => {
                     </div>
                 </div>
                 <div className="flex flex-row gap-2 lg:gap-5">
-                    <BackButton />
-                    {mode==="search"||"host"?(<></>):(<SearchTrigger />)}
+                    {mode==="auth"?(<></>):(<BackButton />)}
+                    {mode==="search"||"host"||"auth"?(<></>):(<SearchTrigger />)}
                     <ModeToggle />
                 </div> 
             </div>
