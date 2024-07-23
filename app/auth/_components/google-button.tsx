@@ -1,7 +1,8 @@
-import { signIn } from "@/auth"
-import { Button } from "@/components/ui/button"
- 
-export function GoogleButton() {
+import React from 'react'
+import { signIn } from '@/auth'
+import { Button } from '@/components/ui/button'
+
+export default function GoogleButton() {
   return (
     <form
       action={async () => {
@@ -20,4 +21,4 @@ export function GoogleButton() {
         </Button>
     </form>
   )
-} 
+}

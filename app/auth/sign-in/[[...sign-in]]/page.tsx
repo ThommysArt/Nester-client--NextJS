@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import SignUpForm from '@/app/auth/_components/sign-in-form';
-import { GoogleButton } from '@/components/google-button';
+import GoogleButton from '@/app/auth/_components/google-button';
 
 export default function SignInPage() {
 
